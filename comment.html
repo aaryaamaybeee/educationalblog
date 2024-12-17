@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ca7f7f;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #978ceb;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #8e1919;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4e7db0;
+        }
+
+        .blog-post {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+
+        .blog-post h3 {
+            margin: 0;
+        }
+
+        .blog-post p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Submit Your Blog</h1>
+    <form id="blog-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="occupation">Occupation:</label>
+        <input type="text" id="occupation" name="occupation" required>
+
+        <label for="content">Blog Content:</label>
+        <textarea id="content" name="content" rows="5" required></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Blogs</h2>
+    <div id="blogs-container">
+        <!-- Blogs will be displayed here -->
+    </div>
+</div>
+
+
+<script>
+    document.getElementById('blog-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const occupation = document.getElementById('occupation').value;
+        const content = document.getElementById('content').value;
+        
+        const blogsContainer = document.getElementById('blogs-container');
+        
+        const blogPost = document.createElement('div');
+        blogPost.className = 'blog-post';
+        
+        const blogHeader = document.createElement('h3');
+        blogHeader.textContent = `${name} (${occupation})`;
+        
+        const blogContent = document.createElement('p');
+        blogContent.textContent = content;
+        
+        blogPost.appendChild(blogHeader);
+        blogPost.appendChild(blogContent);
+        
+        blogsContainer.appendChild(blogPost);
+        
+        document.getElementById('blog-form').reset();
+    });
+</script>
+
+</body>
+</html>
